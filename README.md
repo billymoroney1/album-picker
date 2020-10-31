@@ -51,5 +51,21 @@ app.use(ejsLayouts)
 
 app.use(express.urlencoded({extended: false}))
 
-13.
+13. Time for database:
+
+install sequelize "npm i sequelize pg"
+
+set up config file
+
+sequelize db:create <name of database>
+sequelzie model:create --name <> --attributes <>
+sequelize db:migrate
+
+check psql
+
+14. require models wherever making routes and using sequelize functions
+const db = require('../models')
+
+
+
 
