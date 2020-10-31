@@ -45,5 +45,7 @@ app.use(ejsLayouts)
 
 10. change any 'res.send' to res.render('with a file path here')
 
+11. When making a form:
+
 
 
