@@ -5,6 +5,9 @@ const ejsLayouts = require('express-ejs-layouts')
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 
+//body parse
+app.use(express.urlencoded({extended: false}))
+
 // use controllers 
 app.use('/auth', require('./controllers/auth.js'))
 

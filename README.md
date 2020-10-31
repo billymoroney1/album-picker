@@ -47,5 +47,9 @@ app.use(ejsLayouts)
 
 11. When making a form:
 
+12. when retreiving post info, set up middleware
 
+app.use(express.urlencoded({extended: false}))
+
+13.
 

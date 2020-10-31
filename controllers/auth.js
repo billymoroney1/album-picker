@@ -6,7 +6,7 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/signup', (req, res)=>{
-    console.log('posting to /auth/signup')
+    console.log('signup form user input:', req.body)
     res.redirect('/auth/login')
 })
 
