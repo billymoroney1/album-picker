@@ -67,5 +67,24 @@ check psql
 const db = require('../models')
 
 
+-------------------
+
+# To use this boilerplate
+1. fork and clone
+2. install dependencies
+```
+    npm i
+```
+
+3. Create a config.json with the following code:
+```
+
+3. create database
+
+```
+sequelize db:create 
+
+
+
 
 
