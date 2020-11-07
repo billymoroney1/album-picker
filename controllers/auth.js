@@ -8,7 +8,7 @@ router.get('/login', (req, res) => {
 
 router.post('/signup', (req, res)=>{
     console.log('signup form user input:', req.body)
-    res.redirect('/auth/login')
+    console.log(req.body.password)
 
     //check if user already exists
     //if it does, throw an error message
@@ -28,6 +28,9 @@ router.post('/signup', (req, res)=>{
         }
         //redirect to login page
         res.redirect('/auth/login')
+    })
+    .catch(err=>{
+        console.log('Did not post to db! see error =>', err)
     })
 })
 
