@@ -11,4 +11,8 @@ eventually get all these hefty spotify functions exported elsewhere to clean up 
 how do i add an album to the user currently logged in, do i need to store an id or name in local storage?
 for now i'll just work with id1 for my own username
 
+need to either add buttons or DOM script so that i can go to metadata for album
+
+
+
 
