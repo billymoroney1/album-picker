@@ -67,15 +67,11 @@ app.get('/', (req, res) =>{
 
 //GET search results
 app.post('/search', (req, res) => {
-    let token = ''
     spotifyApi.clientCredentialsGrant().then(
         function(data) {
-          console.log('The access token expires in ' + data.body['expires_in']);
-          console.log('The access token is ' + data.body['access_token']);
-      
-          // Save the access token so that it's used in future calls
-          spotifyApi.setAccessToken(data.body['access_token']);
-          token = data.body['access_token']
+            // Save the access token so that it's used in future calls
+            spotifyApi.setAccessToken(data.body['access_token']);
+            localStorage.setItem('token', `${data.body['access_token']}`)
         },
         function(err) {
           console.log(
@@ -88,7 +84,7 @@ app.post('/search', (req, res) => {
             headers: {
                 'Accept': "application/x-www-form-urlencoded",
                 'Content-Type': "application/x-www-form-urlencoded",
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(results => {
