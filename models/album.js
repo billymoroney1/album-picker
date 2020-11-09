@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.album.belongsTo(models.user)
     }
-  };
+  }
   album.init({
     name: DataTypes.STRING,
     artist: DataTypes.STRING,

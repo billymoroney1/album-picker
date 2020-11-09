@@ -8,3 +8,11 @@ TypeError: Cannot read property 'validPassword' of null
 Library link showing in library
 
 update ERD - this is not a many to many relationship
+
+made a successful axios call, now can i separate so that i make a call for an access token when i log in, store that as environment variables, and make other axios calls for endpoints wherever i want?
+
+need a button to add an album to favorites
+
+probably need to store the spotify Id for an album in the database for metadata api call
+
+how to get css in ejs files again

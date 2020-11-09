@@ -1,1 +1,12 @@
+<style>
+    
+</style>
+
 <h2>Search results</h2>
+
+<div class='container'>
+    <% results.forEach(result => { %>
+        <p><%=result.name%></p>
+        <img src='<%=result.images[0].url%>' height=200 width=200>
+    <% }) %> 
+</div>

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       models.playlist.belongsTo(models.user)
       models.playlist.hasMany(models.track)
     }
-  };
+  }
   playlist.init({
     name: DataTypes.STRING
   }, {

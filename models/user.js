@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       models.user.hasMany(models.playlist)
       models.user.hasMany(models.album)
     }
-  };
+  }
   user.init({
     name: {
       type: DataTypes.STRING,
