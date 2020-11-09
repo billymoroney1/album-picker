@@ -20,3 +20,9 @@ how to get css in ejs files again
 maybe test out the access token storage in a controlled, separate environment
 
 tried to set up a test only to learn that DOM manipulation and running code on a node server do not go hand in hand
+
+eventually get all these hefty spotify functions exported elsewhere to clean up code
+
+bring materialize in and see how that goes (can i just put in layout.ejs? do i need to bring into each .ejs file individually?)
+
+can i add event listeners or materialize classes that allow me to mouse over an image and then have something happen to it like style change plus text appear (maybe this is extra, focus on basic styling/content first)
