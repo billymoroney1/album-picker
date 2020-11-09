@@ -2,11 +2,21 @@
     
 </style>
 
+<h3>Search for Albums</h3>
+<form method="POST" action="/search">
+
+    <input type="search" name="search" id="search">
+
+    <input type="submit" value="Search">
+
+</form>
+
 <h2>Search results</h2>
 
 <div class='container'>
     <% results.forEach(result => { %>
         <p><%=result.name%></p>
         <img src='<%=result.images[0].url%>' height=200 width=200>
+        <a href>
     <% }) %> 
 </div>
