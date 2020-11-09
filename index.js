@@ -9,6 +9,14 @@ const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn.js')
 const axios = require('axios')
 
+// initialize node localStorage
+const LocalStorage = require('node-localstorage').LocalStorage
+localStorage = new LocalStorage('./scratch')
+localStorage.setItem('testKey', 'did this work')
+console.log('did the local storage module work: ', localStorage.getItem('testKey'))
+
+
+
 //SPOTIFY WEB API IMPORT AND CREDENTIALS
 const SpotifyWebApi = require('spotify-web-api-node')
 
