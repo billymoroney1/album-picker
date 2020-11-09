@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.hasMany(models.playlist)
+      models.user.hasMany(models.album)
     }
   };
   user.init({

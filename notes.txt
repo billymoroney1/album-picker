@@ -7,3 +7,4 @@ TypeError: Cannot read property 'validPassword' of null
 
 Library link showing in library
 
+update ERD - this is not a many to many relationship
