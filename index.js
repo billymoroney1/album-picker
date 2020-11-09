@@ -12,10 +12,6 @@ const axios = require('axios')
 // initialize node localStorage
 const LocalStorage = require('node-localstorage').LocalStorage
 localStorage = new LocalStorage('./scratch')
-localStorage.setItem('testKey', 'did this work')
-console.log('did the local storage module work: ', localStorage.getItem('testKey'))
-
-
 
 //SPOTIFY WEB API IMPORT AND CREDENTIALS
 const SpotifyWebApi = require('spotify-web-api-node')
@@ -63,15 +59,12 @@ app.use('/auth', require('./controllers/auth.js'))
 
 app.get('/', (req, res) =>{
     res.render('home')
-})
-
-//GET search results
-app.post('/search', (req, res) => {
     spotifyApi.clientCredentialsGrant().then(
         function(data) {
             // Save the access token so that it's used in future calls
             spotifyApi.setAccessToken(data.body['access_token']);
             localStorage.setItem('token', `${data.body['access_token']}`)
+            console.log(`${data.body['access_token']}`)
         },
         function(err) {
           console.log(
@@ -79,7 +72,11 @@ app.post('/search', (req, res) => {
             err.message
           );
         }
-      ).then(data => {
+      )
+})
+
+//GET search results
+app.post('/search', (req, res) => {
         axios.get(`https://api.spotify.com/v1/search?q=album%3A${req.body.search}&type=album`, {
             headers: {
                 'Accept': "application/x-www-form-urlencoded",
@@ -94,7 +91,6 @@ app.post('/search', (req, res) => {
         .catch(err => {
             console.log(err)
         })
-      })
 
 
       //PROMISES TO PUT AFTER THE ERROR MESSAGE ABOVE IF SEARCHING FOR TRACKS
