@@ -45,9 +45,17 @@ app.get('/', (req, res) =>{
     res.render('home')
 })
 
-app.get('/profile', isLoggedIn, (req, res) => {
-    res.render('profile')
+//GET search results
+app.get('/search', (req, res) => {
+    console.log(req.body)
+    res.render('search')
+}) 
+
+app.get('/library', isLoggedIn, (req, res) => {
+    res.render('library')
 })
+
+
 
 app.listen(8000, ()=>{
     console.log('you\'re listening to the sweet sounds of port 8000')

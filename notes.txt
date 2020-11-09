@@ -1,0 +1,7 @@
+error:
+
+TypeError: Cannot read property 'validPassword' of null
+    at /Users/billy/Documents/SEIFX/album-picker/config/ppConfig.js:50:41
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+    
