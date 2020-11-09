@@ -16,3 +16,7 @@ need a button to add an album to favorites
 probably need to store the spotify Id for an album in the database for metadata api call
 
 how to get css in ejs files again
+
+maybe test out the access token storage in a controlled, separate environment
+
+tried to set up a test only to learn that DOM manipulation and running code on a node server do not go hand in hand
