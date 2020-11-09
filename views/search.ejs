@@ -17,6 +17,15 @@
     <% results.forEach(result => { %>
         <p><%=result.name%></p>
         <img src='<%=result.images[0].url%>' height=200 width=200>
-        <a href>
+
+        <form method="POST" action="/album">
+            <input type="hidden" name="name" id="name" value="<%=`${result.name}`%>">
+            <input type="hidden" name="artist" id="artist" value="<%=`${result.artists[0].name}`%>">
+            <input type="hidden" name="releaseYear" id="releaseYear" value="<%=`${result.release_date}`%>">
+            <input type="hidden" name="pictureUrl" id="pictureUrl" value="<%=`${result.images[0].url}`%>">
+            <input type="hidden" namem="spotifyId" id="spotifyId" value="<%=`${result.id}`%>">
+            <input type="submit" value="Add">        
+        </form>
     <% }) %> 
+    
 </div>

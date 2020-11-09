@@ -4,25 +4,11 @@ TypeError: Cannot read property 'validPassword' of null
     at /Users/billy/Documents/SEIFX/album-picker/config/ppConfig.js:50:41
     at processTicksAndRejections (internal/process/task_queues.js:93:5)
 
-
-Library link showing in library
-
-update ERD - this is not a many to many relationship
-
-made a successful axios call, now can i separate so that i make a call for an access token when i log in, store that as environment variables, and make other axios calls for endpoints wherever i want?
-
-need a button to add an album to favorites
-
 probably need to store the spotify Id for an album in the database for metadata api call
-
-how to get css in ejs files again
-
-maybe test out the access token storage in a controlled, separate environment
-
-tried to set up a test only to learn that DOM manipulation and running code on a node server do not go hand in hand
 
 eventually get all these hefty spotify functions exported elsewhere to clean up code
 
-bring materialize in and see how that goes (can i just put in layout.ejs? do i need to bring into each .ejs file individually?)
+how do i add an album to the user currently logged in, do i need to store an id or name in local storage?
+for now i'll just work with id1 for my own username
 
-can i add event listeners or materialize classes that allow me to mouse over an image and then have something happen to it like style change plus text appear (maybe this is extra, focus on basic styling/content first)
+

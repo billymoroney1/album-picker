@@ -15,6 +15,7 @@ localStorage = new LocalStorage('./scratch')
 
 //SPOTIFY WEB API IMPORT AND CREDENTIALS
 const SpotifyWebApi = require('spotify-web-api-node')
+const db = require('./models/index.js')
 
 let spotifyApi = new SpotifyWebApi({
     clientId: '0a36f996eac1468cb98f0f1e9746dcbe',
@@ -85,7 +86,7 @@ app.post('/search', (req, res) => {
             }
         })
         .then(results => {
-            console.log(results.data.albums.items)
+            // res.send(results.data.albums.items)
             res.render('search', {results: results.data.albums.items})
         })
         .catch(err => {
@@ -106,8 +107,38 @@ app.post('/search', (req, res) => {
     
 }) 
 
+app.post('/album', (req, res) => {
+    console.log(req.body)
+    db.album.findOrCreate({
+        where: {
+            name: `${req.body.name}`,
+            artist: `${req.body.artist}`,
+            releaseYear: `${req.body.releaseYear}`,
+            pictureUrl: `${req.body.pictureUrl}`,
+            spotifyId: `${req.body.spotifyId}`
+        }
+    }).then(([album, created]) => {
+            db.user.findOne({
+                where: {
+                    id: 1
+                }
+            }).then(user => {
+                user.addAlbum(album)
+                res.redirect('/library')
+            })
+       })
+    })
+
+
 app.get('/library', isLoggedIn, (req, res) => {
-    res.render('library')
+    db.album.findAll({
+        where: {
+            userId: '1'
+        }
+    })
+    .then(albums => {
+        res.render('library', {albums: albums})
+    })
 })
 
 

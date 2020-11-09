@@ -1,3 +1,9 @@
 <h2><%= currentUser.name %>'s Library</h2>
 
 <a href='/'>Search</a>
+
+<% console.log(albums) %>
+
+<% albums.forEach(album => { %>
+    <img src=<%=album.dataValues.pictureUrl%>>
+<% }) %> 
