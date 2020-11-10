@@ -65,7 +65,6 @@ app.get('/', (req, res) =>{
             // Save the access token so that it's used in future calls
             spotifyApi.setAccessToken(data.body['access_token']);
             localStorage.setItem('token', `${data.body['access_token']}`)
-            console.log(`${data.body['access_token']}`)
         },
         function(err) {
           console.log(
@@ -108,7 +107,6 @@ app.post('/search', (req, res) => {
 }) 
 
 app.post('/album', (req, res) => {
-    console.log(req.body)
     db.album.findOrCreate({
         where: {
             name: `${req.body.name}`,
@@ -120,7 +118,7 @@ app.post('/album', (req, res) => {
     }).then(([album, created]) => {
             db.user.findOne({
                 where: {
-                    id: 1
+                    id: `${res.locals.currentUser.dataValues.id}`
                 }
             }).then(user => {
                 user.addAlbum(album)
@@ -133,7 +131,7 @@ app.post('/album', (req, res) => {
 app.get('/library', isLoggedIn, (req, res) => {
     db.album.findAll({
         where: {
-            userId: '1'
+            userId: `${res.locals.currentUser.dataValues.id}`
         }
     })
     .then(albums => {

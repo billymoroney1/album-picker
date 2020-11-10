@@ -13,6 +13,10 @@ for now i'll just work with id1 for my own username
 
 need to either add buttons or DOM script so that i can go to metadata for album
 
+how do drop down menu? want to be able to select from several playlists
 
+maybe to start just have the user have one playlist
+
+****i think i need to change model from spotifyId to something else because that kind of name is reserved? regardless just the spotifyId's are undefined
 
 
