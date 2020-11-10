@@ -1,0 +1,15 @@
+<h2>Album Metadata</h2>
+
+<img src=<%=`${albumResults.images[0].url}`%> width=300 height=300>
+
+<h3><%=albumResults.artists.name%></h3>
+<p><%=albumResults.copyrights[0].text%></p>
+<p><%=albumResults.label%></p>
+<p><%=albumResults.release_date%></p>
+
+<ul>
+    <%trackList.items.forEach(track => { %>
+        <li><%=track.name%></li>
+    <% }) %>
+</ul>
+    

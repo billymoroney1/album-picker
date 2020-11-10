@@ -20,7 +20,7 @@ module.exports = {
       pictureUrl: {
         type: Sequelize.STRING
       },
-      idSpotify: {
+      spotify: {
         type: Sequelize.STRING
       },
       userId: {

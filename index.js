@@ -113,7 +113,7 @@ app.post('/album', (req, res) => {
             artist: `${req.body.artist}`,
             releaseYear: `${req.body.releaseYear}`,
             pictureUrl: `${req.body.pictureUrl}`,
-            spotifyId: `${req.body.spotifyId}`
+            spotify: `${req.body.spotify}`
         }
     }).then(([album, created]) => {
             db.user.findOne({
@@ -126,6 +126,32 @@ app.post('/album', (req, res) => {
             })
        })
     })
+
+// Send album metadata and track list to /album
+app.get('/album', (req, res) => {
+    axios.get(`https://api.spotify.com/v1/albums/${req.query.id}`, {
+            headers: {
+                'Accept': "application/x-www-form-urlencoded",
+                'Content-Type': "application/x-www-form-urlencoded",
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(albumResults => {
+                axios.get(`https://api.spotify.com/v1/albums/${req.query.id}/tracks`, {
+                headers: {
+                    'Accept': "application/x-www-form-urlencoded",
+                    'Content-Type': "application/x-www-form-urlencoded",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(trackList => {
+                // res.send(trackList.data)
+                // res.send(albumResults.data)
+                res.render('album', {albumResults: albumResults.data, trackList: trackList.data})
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 
 
 app.get('/library', isLoggedIn, (req, res) => {

@@ -23,7 +23,8 @@
             <input type="hidden" name="artist" id="artist" value="<%=`${result.artists[0].name}`%>">
             <input type="hidden" name="releaseYear" id="releaseYear" value="<%=`${result.release_date}`%>">
             <input type="hidden" name="pictureUrl" id="pictureUrl" value="<%=`${result.images[0].url}`%>">
-            <input type="hidden" namem="spotifyId" id="spotifyId" value="<%=`${result.id}`%>">
+            <input type="hidden" name="spotify" id="spotify" value="<%=`${result.id}`%>">
+            <% console.log("spotify: ", `${result.id}`) %> 
             <input type="submit" value="Add">        
         </form>
     <% }) %> 
