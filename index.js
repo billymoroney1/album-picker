@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn.js')
 const axios = require('axios')
+const methodOverride = require('method-override')
 
 // initialize node localStorage
 const LocalStorage = require('node-localstorage').LocalStorage
@@ -28,6 +29,9 @@ let spotifyApi = new SpotifyWebApi({
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 
+//method override
+app.use(methodOverride('_method'))
+
 //session middleware
 app.use(session({
     secret: 'keyboard cat',
@@ -35,7 +39,6 @@ app.use(session({
     saveUninitialized: true,
 
 }))
-
 
 //passport middleware
 app.use(passport.initialize())
@@ -51,9 +54,10 @@ app.use((req, res, next)=>{
     next()
 })
 
-
 //body parse
 app.use(express.urlencoded({extended: false}))
+
+
 
 // use controllers 
 app.use('/auth', require('./controllers/auth.js'))
@@ -127,6 +131,8 @@ app.post('/album', (req, res) => {
        })
     })
 
+
+
 // Send album metadata and track list to /album
 app.get('/album', (req, res) => {
     axios.get(`https://api.spotify.com/v1/albums/${req.query.id}`, {
@@ -162,6 +168,50 @@ app.get('/library', isLoggedIn, (req, res) => {
     })
     .then(albums => {
         res.render('library', {albums: albums})
+    })
+})
+
+// GET read playlist edit form
+app.get('/playlists/:id', (req, res) => {
+    db.playlist.findOne({
+        where: {
+            name: req.params.id
+        }
+    }).then(playlist => {
+        res.render('playlists/edit', {playlist: playlist})
+    })
+})
+
+// PUT update playlist
+
+// DELETE delete playlist
+app.delete('/playlists/:id', (req, res) => {
+    db.playlist.destroy({
+        where: {
+            name: req.params.id
+        }
+    }).then(destroyed => {
+        console.log(destroyed)
+        res.redirect('/playlists')
+    })
+})
+
+// GET read playlists page
+app.get('/playlists', (req, res) => {
+    db.playlist.findAll()
+    .then(playlists => {
+        res.render('playlists', {playlists: playlists})
+    })
+})
+
+// POST find or create new playlist 
+app.post('/playlists', (req, res) => {
+    db.playlist.findOrCreate({
+        where: {
+            name: req.body.name
+        }
+    }).then(([playlist, created]) => {
+        res.redirect('/playlists')
     })
 })
 

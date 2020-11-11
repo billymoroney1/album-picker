@@ -1,3 +1,24 @@
-<form>
-    
+<h3>Create a Playlist</h3>
+
+<form method="POST" action='/playlists'>
+    <label for='name'>Name</label>
+    <input id='name' name='name'>
+
+    <input type='submit' value='Create'>
 </form>
+
+<ul>
+    <% playlists.forEach(playlist => { %> 
+        <li>
+            <%= playlist.name %> 
+            
+        <a href=<%=`/playlists/${playlist.name}`%>>Edit</a>
+
+        <form method="POST" action="/playlists/<%=playlist.name%>/?_method=DELETE">
+            <input type="submit" value="Delete">
+        </form>
+
+        </li>
+    <% }) %>
+</ul>
+
