@@ -181,15 +181,53 @@ app.get('/library', isLoggedIn, (req, res) => {
     })
 })
 
-// GET list of available playlists to add a track to
-app.get('/playlists/show', (req, res) => {
+// GET read playlists page
+app.get('/playlists/index', (req, res) => {
+    const trackLists = []
     db.playlist.findAll({
         where: {
             userId: `${res.locals.currentUser.dataValues.id}`
         }
     })
     .then(playlists => {
-        res.render('playlists/show', {playlists: playlists, trackName: req.query.name, trackPic: req.query.pictureUrl, trackLength: req.query.length})
+        playlists.forEach(playlist => {
+            playlist.getTracks().then(tracks => {
+                console.log(tracks)
+                trackLists.push(tracks)
+            })
+        })
+        console.log(trackLists)
+        res.render('playlists/index', {playlists: playlists, trackLists: trackLists})
+    })
+})
+
+// GET info for specific playlist
+app.get('/playlists/show/:name', (req, res) => {
+    console.log(req.params.name)
+    db.playlist.findOne({
+        where: {
+            name: req.params.name
+        }
+    }).then(playlist => {
+        db.track.findAll({
+            where: {
+                playlistId: playlist.id
+            }
+        }).then(tracks => {
+            res.render('playlists/show', {playlist: playlist, tracks: tracks})
+        })
+    })
+})
+
+// GET list of available playlists to add a track to
+app.get('/playlists/add', (req, res) => {
+    db.playlist.findAll({
+        where: {
+            userId: `${res.locals.currentUser.dataValues.id}`
+        }
+    })
+    .then(playlists => {
+        res.render('playlists/add', {playlists: playlists, trackName: req.query.name, trackPic: req.query.pictureUrl, trackLength: req.query.length})
     })
 })
 
@@ -200,7 +238,9 @@ app.get('/playlists/:id', (req, res) => {
             name: req.params.id
         }
     }).then(playlist => {
-        res.render('playlists/edit', {playlist: playlist})
+        playlist.getTracks().then(tracks => {
+            res.render('playlists/edit', {playlist: playlist, tracks: tracks})
+        })
     })
 })
 
@@ -213,7 +253,7 @@ app.put('/playlists/:id', (req, res) => {
     }).then(playlist => {
         playlist.name = `${req.body.name}`
         playlist.save()
-        res.redirect('/playlists')
+        res.redirect(`/playlists/show/${playlist.name}`)
     })
 })
 
@@ -229,17 +269,18 @@ app.delete('/playlists/:id', (req, res) => {
     })
 })
 
-// GET read playlists page
-app.get('/playlists', (req, res) => {
-    db.playlist.findAll({
+// DELETE track from playlist
+app.delete('/track/:name', (req, res) => {
+    db.track.destroy({
         where: {
-            userId: `${res.locals.currentUser.dataValues.id}`
+            name: req.params.name
         }
-    })
-    .then(playlists => {
-        res.render('playlists', {playlists: playlists})
+    }).then(destroyed => {
+        console.log(destroyed)
+        res.redirect(`/playlists/show/${req.body.name}`)
     })
 })
+
 
 // POST find or create new playlist 
 app.post('/playlists', (req, res) => {
@@ -254,7 +295,7 @@ app.post('/playlists', (req, res) => {
             }
         }).then(user => {
             user.addPlaylist(playlist)
-            res.redirect('/playlists')
+            res.redirect('/playlists/index')
         })
     })
 })

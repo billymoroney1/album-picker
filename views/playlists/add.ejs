@@ -1,0 +1,15 @@
+<h2>Available Playlists</h2>
+
+<ul>
+<% playlists.forEach(playlist => { %> 
+    <li>
+        <form method="POST" action="/track">
+            <input type='hidden' name='trackName' value="<%=trackName%>">
+            <input type='hidden' name='trackPic' value=<%=trackPic%>>
+            <input type='hidden' name='trackLength' value=<%=trackLength%>>
+            <input type='hidden' name='playlist' value="<%=playlist.name%>">
+            <input type='submit' value="<%=playlist.name%>">
+        </form>
+    </li>
+<% }) %>
+</ul>

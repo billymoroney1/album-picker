@@ -5,3 +5,11 @@
     <input id='name' name='name' value='<%=playlist.name%>'>
     <input type='submit'>
 </form>
+
+<% tracks.forEach(track => { %>
+    <p><%=track.name%></p><br>
+    <form method="POST" action="/track/<%=track.name%>/?_method=DELETE">
+        <input type='hidden' name='name' value='<%= playlist.name %>'>
+        <input type="submit" value="Delete">
+    </form>
+<% }) %> 
