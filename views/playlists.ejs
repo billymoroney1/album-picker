@@ -9,8 +9,9 @@
 
 <ul>
     <% playlists.forEach(playlist => { %> 
+        <% console.log(playlist.name) %> 
         <li>
-            <%= playlist.name %> 
+            <%= playlist.name %> <br>
             
         <a href=<%=`/playlists/${playlist.name}`%>>Edit</a>
 

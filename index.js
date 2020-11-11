@@ -131,7 +131,17 @@ app.post('/album', (req, res) => {
        })
     })
 
-
+// DELETE album
+app.delete('/album/:id', (req, res) => {
+    db.album.destroy({
+        where: {
+            name: req.params.id
+        }
+    }).then(destroyed => {
+        console.log(destroyed)
+        res.redirect('/library')
+    })
+})
 
 // Send album metadata and track list to /album
 app.get('/album', (req, res) => {
@@ -183,6 +193,17 @@ app.get('/playlists/:id', (req, res) => {
 })
 
 // PUT update playlist
+app.put('/playlists/:id', (req, res) => {
+    db.playlist.findOne({
+        where: {
+            name: req.params.id
+        }
+    }).then(playlist => {
+        playlist.name = `${req.body.name}`
+        playlist.save()
+        res.redirect('/playlists')
+    })
+})
 
 // DELETE delete playlist
 app.delete('/playlists/:id', (req, res) => {

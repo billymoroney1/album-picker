@@ -4,19 +4,13 @@ TypeError: Cannot read property 'validPassword' of null
     at /Users/billy/Documents/SEIFX/album-picker/config/ppConfig.js:50:41
     at processTicksAndRejections (internal/process/task_queues.js:93:5)
 
-probably need to store the spotify Id for an album in the database for metadata api call
+cannot have a question mark on the end of a playlist name or can't edit delete
 
 eventually get all these hefty spotify functions exported elsewhere to clean up code
 
-how do i add an album to the user currently logged in, do i need to store an id or name in local storage?
-for now i'll just work with id1 for my own username
-
-need to either add buttons or DOM script so that i can go to metadata for album
-
 how do drop down menu? want to be able to select from several playlists
 
-maybe to start just have the user have one playlist
 
-****i think i need to change model from spotifyId to something else because that kind of name is reserved? regardless just the spotifyId's are undefined
+
 
 

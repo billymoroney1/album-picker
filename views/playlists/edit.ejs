@@ -1,1 +1,7 @@
 <h1>Playlist Edit Form</h1>
+
+<form method="POST" action="/playlists/<%=playlist.name%>/?_method=PUT">
+    <label for='name'>Name</label>
+    <input id='name' name='name' value='<%=playlist.name%>'>
+    <input type='submit'>
+</form>

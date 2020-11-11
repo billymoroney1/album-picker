@@ -10,4 +10,7 @@
     <img src=<%=album.dataValues.pictureUrl%> width=200 height=200>
     <a href="/album/?id=<%=`${album.dataValues.spotify}`%>">Info</a>
     <br>
+    <form method="POST" action="/album/<%=album.dataValues.name%>/?_method=DELETE">
+        <input type="submit" value="Delete">
+    </form>
 <% }) %> 
