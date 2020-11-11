@@ -10,6 +10,12 @@
 <ul>
     <%trackList.items.forEach(track => { %>
         <li><%=track.name%></li>
+        <form method="GET" action="/playlists/show">
+            <input type='hidden' name='name' value="<%=track.name%>"">
+            <input type='hidden' name='pictureUrl' value="">
+            <input type='hidden' name='length' value=<%=track.duration_ms%>>
+            <input type='submit' value='Add to Playlist'>
+        </form>
     <% }) %>
 </ul>
     

@@ -10,7 +10,13 @@ eventually get all these hefty spotify functions exported elsewhere to clean up 
 
 how do drop down menu? want to be able to select from several playlists
 
+issues with special characters in put/delete routes. do i need to encode them or something?
 
 
 
+TO ADD A TRACK TO A PLAYLIST I WILL NEED TO: 
+have the add to playlist button take me to a page that has anchor tags with available playlists
+somehow carry the song info with me
+finally do the post request
 
+if i want pictures for tracks that's going to be an intense process of draggin along album JSON with me, figure out or drop column later
