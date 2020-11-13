@@ -47,7 +47,10 @@ passport.use(new LocalStrategy({
         console.log("passport-local is now trying to authenticate this user:", email)
         db.user.findOne({where:{email:email}})
         .then(async foundUser=>{
-            let match = await foundUser.validPassword(password)
+            let match
+            if(foundUser){
+                match = await foundUser.validPassword(password)
+            }
             if (!foundUser || !match) { 
                 return doneCallback(null, false)
             } else {
