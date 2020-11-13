@@ -1,0 +1,57 @@
+<div class='row'>
+    <div class='col s6'>
+        <h3>Albums</h3>  
+    <div class='albumResults'>
+        <% albumResults.forEach(result => { %>
+            <div class='panel'>
+            <img src='<%=result.images[0].url%>' height=230px width=230px>
+                    <form method="POST" action="/album">
+                        <input type="hidden" name="name" id="name" value="<%=`${result.name}`%>">
+                        <input type="hidden" name="artist" id="artist" value="<%=`${result.artists[0].name}`%>">
+                        <input type="hidden" name="releaseYear" id="releaseYear" value="<%=`${result.release_date}`%>">
+                        <input type="hidden" name="pictureUrl" id="pictureUrl" value="<%=`${result.images[0].url}`%>">
+                        <input type="hidden" name="spotify" id="spotify" value="<%=`${result.id}`%>">
+                            <button class="btn-small waves-effect waves-light center-align" type="submit" value="Add">
+                                Add
+                            </button>
+                </form>
+            </div>
+            <% }) %>   
+    </div>
+
+    <h3>Artists</h3>
+    <div class='artistResults'>
+        <% artistResults.forEach(result => { %> 
+            <div class=panel>
+                <form method='POST' action='/search/artist'>
+                    <input type='hidden' name='artistId' value='<%=result.id%>'>
+                    <button class="btn waves-effect waves-light" type="submit">
+                       <%=result.name%>
+                    </button>
+                </form>
+                <img src='<%=result.images[0].url%>' height='230px' width='230px'>
+            </div>
+    <% }) %>
+    </div>
+</div>
+
+<div class='col s6'>
+    <h3>Tracks</h3>
+    <div class='trackResults'>
+        
+            <% trackResults.forEach(track => { %>
+                <div class='track'>
+                    <%= track.name %> 
+                    <form method="GET" action="/playlists/add">
+                        <input type='hidden' name='name' value="<%=track.name%>">
+                        <input type='hidden' name='pictureUrl' value="">
+                        <input type='hidden' name='length' value=<%=track.duration_ms%>>
+                        <button class='btn waves-effect waves-light light-blue lighten-4' style="color:black;" type='submit' name='action'>
+                            Add
+                        </button>
+                    </form>
+                </div>
+            <% }) %> 
+        </div>
+    </div>
+</div>

@@ -34,6 +34,11 @@ body {
     justify-content: center;
 }
 
+.albumResults, .artistResults {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .options {
     display: flex;
     justify-content: space-around;

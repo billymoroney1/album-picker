@@ -5,7 +5,8 @@
         </div>
         <div class='card indigo darken-4 z-depth-4'>
             <div class='card-content'>
-                <span class='card-title'><%=albumResults.artists.name%></span>
+                <span class='card-title'><%=albumResults.artists[0].name%></span>
+                <p><%=albumResults.name%></p>
                 <p><%=albumResults.label%></p>
                 <p><%=albumResults.release_date%></p>
                 <p><%=albumResults.copyrights[0].text%></p>

@@ -82,34 +82,54 @@ app.get('/', (req, res) =>{
 
 //GET search results
 app.post('/search', (req, res) => {
-        axios.get(`https://api.spotify.com/v1/search?q=album%3A${req.body.search}&type=album`, {
-            headers: {
-                'Accept': "application/x-www-form-urlencoded",
-                'Content-Type': "application/x-www-form-urlencoded",
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-        .then(results => {
-            // res.send(results.data.albums.items)
-            res.render('search', {results: results.data.albums.items})
+            axios.get(`https://api.spotify.com/v1/search?q=album%3A${req.body.search}&type=album&limit=2`, {
+                headers: {
+                    'Accept': "application/x-www-form-urlencoded",
+                    'Content-Type': "application/x-www-form-urlencoded",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(albumResults => {
+                axios.get(`https://api.spotify.com/v1/search?q=artist%3A${req.body.search}&type=artist&limit=2`, {
+                headers: {
+                    'Accept': "application/x-www-form-urlencoded",
+                    'Content-Type': "application/x-www-form-urlencoded",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(artistResults => {
+                axios.get(`https://api.spotify.com/v1/search?q=track%3A${req.body.search}&type=track&limit=20`, {
+                headers: {
+                    'Accept': "application/x-www-form-urlencoded",
+                    'Content-Type': "application/x-www-form-urlencoded",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(trackResults => {
+                // res.send(trackResults.data.tracks.items)
+                // res.send(artistResults.data.artists.items)
+                // res.send(albumResults)
+                res.render('search/index', {albumResults: albumResults.data.albums.items, artistResults: artistResults.data.artists.items, trackResults: trackResults.data.tracks.items})
+            })
+            })            
         })
         .catch(err => {
             console.log(err)
-        })
-
-
-      //PROMISES TO PUT AFTER THE ERROR MESSAGE ABOVE IF SEARCHING FOR TRACKS
-    //   .then(data => {spotifyApi.searchTracks(req.body.search)
-    //   .then(function(data) {
-    //     console.log('Track search results', data.body);
-    //     // res.send(data.body.tracks.items.name)
-    //     res.render('search', {results: data.body.tracks.items})
-    //   }, function(err) {
-    //     console.error(err);
-    //   })
-    // })
-    
+        })  
 }) 
+
+app.post('/search/artist', (req, res) => {
+    axios.get(`https://api.spotify.com/v1/artists/${req.body.artistId}/albums`, {
+                headers: {
+                    'Accept': "application/x-www-form-urlencoded",
+                    'Content-Type': "application/x-www-form-urlencoded",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(albums => {
+                // res.send(albums.data.items)
+                res.render('search/artist', {albums: albums.data.items})
+            })
+})
 
 app.post('/album', (req, res) => {
     db.album.findOrCreate({
@@ -160,6 +180,7 @@ app.get('/album', (req, res) => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             }).then(trackList => {
+                // res.send(albumResults.data)
                 res.render('album', {albumResults: albumResults.data, trackList: trackList.data})
             })
         })

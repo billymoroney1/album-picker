@@ -1,18 +1,14 @@
 
-
 if i want pictures for tracks that's going to be an intense process of draggin along album JSON with me, figure out or drop column later
-
-need to add ability to remove tracks to playlist edit page
 
 put in a 404 page with a link back to home page if there is an error
 
 add ability to add a playlist at the screen where i choose a playlist to add a track to
 
-make search bar put out results for artists, tracks, and albums
-
 how the hell do i get static js file to work for dom manip i feel like i'm close
 
 weird bug where i can't delete a track? is it because of ridiculous, long, punctuation/heavy name? or a database issue
+weird issue where if an artist does not have an image it will throw error
 
 EXTRA:
 put some sound in there using Tone.js
