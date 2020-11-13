@@ -1,6 +1,13 @@
-<div class="center-align">
-    <h4>Library</h4>
+<div class='container'>
+    <div class="card red darken-1 z-depth-3">
+        <div class="card-content">
+            <div class="center-align">
+                <h4>Library</h4>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 <br> <br>
@@ -12,10 +19,10 @@
                 <img src=<%=album.dataValues.pictureUrl%> width='220px' height='220px'>
             </div>
             <div class="options">
-                <a class="waves-effect waves-teal btn-small" href="/album/?id=<%=`${album.dataValues.spotify}`%>">Info</a>
+                <a class="waves-effect waves-teal btn-small cyan" href="/album/?id=<%=`${album.dataValues.spotify}`%>">Info</a>
                 <br>
                 <form method="POST" action="/album/<%=album.dataValues.name%>/?_method=DELETE">
-                    <button class="btn-small waves-effect waves-light" type="submit" name="action">
+                    <button class="btn-small waves-effect waves-light red darken-3" type="submit" name="action">
                         Delete
                     </button>
                 </form>

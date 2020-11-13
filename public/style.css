@@ -1,8 +1,14 @@
 body {
-    background-color: #fafafa;
+    background-color: #424242;
     position: relative;
     width: 100vw;
     height: 100vh;
+    color: white;
+    font-family: 'Cousine';
+}
+
+.btn {
+    background-color: #66bb6a;
 }
 
 .login {
@@ -41,4 +47,25 @@ body {
 
 .album {
     padding: 20px;
+}
+
+.imageBox {
+    padding-top: 100px;
+}
+
+.track {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.playlists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.edit-form {
+    display: flex;
+    justify-content: space-between;
 }

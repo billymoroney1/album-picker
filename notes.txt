@@ -12,6 +12,8 @@ make search bar put out results for artists, tracks, and albums
 
 how the hell do i get static js file to work for dom manip i feel like i'm close
 
+weird bug where i can't delete a track? is it because of ridiculous, long, punctuation/heavy name? or a database issue
+
 EXTRA:
 put some sound in there using Tone.js
 try to incorporate both static and dynamic files

@@ -160,8 +160,6 @@ app.get('/album', (req, res) => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             }).then(trackList => {
-                // res.send(trackList.data)
-                // res.send(albumResults.data)
                 res.render('album', {albumResults: albumResults.data, trackList: trackList.data})
             })
         })
@@ -254,7 +252,7 @@ app.put('/playlists/:id', (req, res) => {
     }).then(playlist => {
         playlist.name = `${req.body.name}`
         playlist.save()
-        res.redirect(`/playlists/show/${playlist.name}`)
+        res.redirect(`/playlists/${playlist.name}`)
     })
 })
 

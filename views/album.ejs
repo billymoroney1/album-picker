@@ -1,20 +1,41 @@
+<div class='row'>
+    <div class='col s6'>
+        <div class='center-align' style='padding-top:15px'>
+            <img class='z-depth-5' src=<%=`${albumResults.images[0].url}`%> width=500 height=500>
+        </div>
+        <div class='card indigo darken-4 z-depth-4'>
+            <div class='card-content'>
+                <span class='card-title'><%=albumResults.artists.name%></span>
+                <p><%=albumResults.label%></p>
+                <p><%=albumResults.release_date%></p>
+                <p><%=albumResults.copyrights[0].text%></p>
+            </div>
+        </div>
+    </div>
+        
+    <div class='col s3 offset-s1'>
+        <div class='card indigo z-depth-4'>
+            <div class='card-content'>
+                <ul>
+                    <%trackList.items.forEach(track => { %>
+                        <div class='track'>
+                            <li><%=track.name%></li>
+                            <form method="GET" action="/playlists/add">
+                                <input type='hidden' name='name' value="<%=track.name%>">
+                                <input type='hidden' name='pictureUrl' value="">
+                                <input type='hidden' name='length' value=<%=track.duration_ms%>>
+                                <button class='btn waves-effect waves-light light-blue lighten-4' style="color:black;" type='submit' name='action'>
+                                    Add
+                                </button>
+                            </form>
+                        </div>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>   
+    </div>
+</div>
 
-<img src=<%=`${albumResults.images[0].url}`%> width=300 height=300>
 
-<h3><%=albumResults.artists.name%></h3>
-<p><%=albumResults.copyrights[0].text%></p>
-<p><%=albumResults.label%></p>
-<p><%=albumResults.release_date%></p>
 
-<ul>
-    <%trackList.items.forEach(track => { %>
-        <li><%=track.name%></li>
-        <form method="GET" action="/playlists/show">
-            <input type='hidden' name='name' value="<%=track.name%>"">
-            <input type='hidden' name='pictureUrl' value="">
-            <input type='hidden' name='length' value=<%=track.duration_ms%>>
-            <input type='submit' value='Add to Playlist'>
-        </form>
-    <% }) %>
-</ul>
-    
+

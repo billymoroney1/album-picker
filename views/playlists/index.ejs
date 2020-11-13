@@ -1,24 +1,35 @@
-<h3>Create a Playlist</h3>
+<div class="row center-align">
+    <div class="col s4 offset-s4">
+        <div class="card hoverable z-depth-2 indigo darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Create a Playlist</span>
+                <form method="POST" action='/playlists'>
+                    <label for='name'>Name</label>
+                    <input id='name' name='name'>
+                
+                    <input type='submit' class='btn light-green accent-4 hoverable' style='color:white;' value='Create'>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-<form method="POST" action='/playlists'>
-    <label for='name'>Name</label>
-    <input id='name' name='name'>
 
-    <input type='submit' value='Create'>
-</form>
 
-<ul>
-    <% playlists.forEach(playlist => { %> 
-        <li>
-        <a href='/playlists/show/<%= playlist.name %>'><%= playlist.name %></a>
-            
-        <a href=<%=`/playlists/${playlist.name}`%>>Edit</a>
+<div class='playlists'>
+        <% playlists.forEach(playlist => { %> 
+           <div class='col s4'>
+               <div class="card hoverable green lighten-2">
+                   <div class="card-content" style="display:flex;flex-direction:column;font-size:25px;">
+                        <span class='card-title'><a style='font-size:33px;' href='/playlists/show/<%= playlist.name %>'><%= playlist.name %></a></span>
+                        <a class="btn" href="<%=`/playlists/${playlist.name}`%>">Edit</a>
+                        <form method="POST"  action="/playlists/<%=playlist.name%>/?_method=DELETE">
+                            <input type="submit" class='btn red darken-1' style="width:100%;" value="Delete">
+                        </form>
+                   </div>
+               </div>
+           </div> 
+        <% }) %>
+</div>
 
-        <form method="POST" action="/playlists/<%=playlist.name%>/?_method=DELETE">
-            <input type="submit" value="Delete">
-        </form>
-
-        </li>
-    <% }) %>
-</ul>
 
