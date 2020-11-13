@@ -266,7 +266,7 @@ app.delete('/playlists/:id', (req, res) => {
         }
     }).then(destroyed => {
         console.log(destroyed)
-        res.redirect('/playlists')
+        res.redirect('/playlists/index')
     })
 })
 
