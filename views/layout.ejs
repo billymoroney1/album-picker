@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>818 Express Auth</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type='text/css' href="/style.css">
 </head>
 <body>
     <header>
-        <h1>Album Picker</h1>
-        <nav>
+        <nav class='nav-wrapper blue-grey darken-3'>
             <ul>
                 <% if(!currentUser) {%>
                     <li><a href="/auth/signup">Sign Up</a></li> 
                     <li><a href="/auth/login">Log In</a></li>
                 <% } else { %>
-                    <li><a href="/auth/logout">Log Out</a></li>
+                    <ul class="right">
+                        <li><%=currentUser.name%></li>
+                        <li><a href="/auth/logout">Log Out</a></li>
+                    </ul>
                     <li><a href="/library">Library</a></li>
+                    <li><a href="/">Search</a></li>
+                    <li><a href="/playlists/index">Playlists</a></li>
                <% } %> 
             </ul>
         </nav>
@@ -24,5 +30,6 @@
     <%- include('partials/alerts.ejs') %> 
     <%- body %> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/app.js"></script>
 </body>
 </html>

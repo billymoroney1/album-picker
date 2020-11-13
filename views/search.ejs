@@ -1,32 +1,22 @@
-<style>
-    
-</style>
 
-<h3>Search for Albums</h3>
-<form method="POST" action="/search">
-
-    <input type="search" name="search" id="search">
-
-    <input type="submit" value="Search">
-
-</form>
-
-<h2>Search results</h2>
-
-<div class='container'>
+<div class='results'>
     <% results.forEach(result => { %>
-        <p><%=result.name%></p>
-        <img src='<%=result.images[0].url%>' height=200 width=200>
-
-        <form method="POST" action="/album">
-            <input type="hidden" name="name" id="name" value="<%=`${result.name}`%>">
-            <input type="hidden" name="artist" id="artist" value="<%=`${result.artists[0].name}`%>">
-            <input type="hidden" name="releaseYear" id="releaseYear" value="<%=`${result.release_date}`%>">
-            <input type="hidden" name="pictureUrl" id="pictureUrl" value="<%=`${result.images[0].url}`%>">
-            <input type="hidden" name="spotify" id="spotify" value="<%=`${result.id}`%>">
-            <% console.log("spotify: ", `${result.id}`) %> 
-            <input type="submit" value="Add">        
-        </form>
-    <% }) %> 
+        <div class='panel'>
+        <img src='<%=result.images[0].url%>' height=230px width=230px>
+                <form method="POST" action="/album">
+                    <input type="hidden" name="name" id="name" value="<%=`${result.name}`%>">
+                    <input type="hidden" name="artist" id="artist" value="<%=`${result.artists[0].name}`%>">
+                    <input type="hidden" name="releaseYear" id="releaseYear" value="<%=`${result.release_date}`%>">
+                    <input type="hidden" name="pictureUrl" id="pictureUrl" value="<%=`${result.images[0].url}`%>">
+                    <input type="hidden" name="spotify" id="spotify" value="<%=`${result.id}`%>">
+                    <div class='center-align'>
+                        <button class="btn-small waves-effect waves-light" type="submit" value="Add">
+                            Add
+                        </button>
+                    </div>
+            </form>
+            </div>
+        <% }) %> 
     
 </div>
+            

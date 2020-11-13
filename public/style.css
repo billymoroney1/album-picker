@@ -1,0 +1,44 @@
+body {
+    background-color: #fafafa;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login {
+    position: absolute;
+    top: 40%;
+    width: 60%;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    padding: 12px;
+    justify-content: center;
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+}
+
+.library {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.album {
+    padding: 20px;
+}

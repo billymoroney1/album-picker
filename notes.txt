@@ -16,6 +16,8 @@ add ability to add a playlist at the screen where i choose a playlist to add a t
 
 make search bar put out results for artists, tracks, and albums
 
+how the hell do i get static js file to work for dom manip i feel like i'm close
+
 should probably just simplify and have an additional get route to show the songs in a playlist, so i can do a track.findAll where id = playlistId etc.
 
 EXTRA:

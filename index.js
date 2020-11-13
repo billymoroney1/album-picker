@@ -28,6 +28,7 @@ let spotifyApi = new SpotifyWebApi({
 
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+app.use(express.static('public'))
 
 //method override
 app.use(methodOverride('_method'))

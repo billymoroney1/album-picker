@@ -1,16 +1,30 @@
-<h2><%= currentUser.name %>'s Library</h2>
+<div class="center-align">
+    <h4>Library</h4>
+</div>
 
-<a href='/playlists/index'>Playlists</a><br>
 
-<a href='/'>Search</a>
 <br> <br>
 
+<div class="library">
+    <% albums.forEach(album => { %>
+        <div class="album">
+            <div class='z-depth-4'>
+                <img src=<%=album.dataValues.pictureUrl%> width='220px' height='220px'>
+            </div>
+            <div class="options">
+                <a class="waves-effect waves-teal btn-small" href="/album/?id=<%=`${album.dataValues.spotify}`%>">Info</a>
+                <br>
+                <form method="POST" action="/album/<%=album.dataValues.name%>/?_method=DELETE">
+                    <button class="btn-small waves-effect waves-light" type="submit" name="action">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    <% }) %> 
+</div>
 
-<% albums.forEach(album => { %>
-    <img src=<%=album.dataValues.pictureUrl%> width=200 height=200>
-    <a href="/album/?id=<%=`${album.dataValues.spotify}`%>">Info</a>
-    <br>
-    <form method="POST" action="/album/<%=album.dataValues.name%>/?_method=DELETE">
-        <input type="submit" value="Delete">
-    </form>
-<% }) %> 
+
+
+
+
