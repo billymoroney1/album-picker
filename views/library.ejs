@@ -9,8 +9,28 @@
 </div>
 
 
+<%if(albums.length > 0) {%>
+    <div class='parallax-container'>
+        <div class='parallax'>
+            <% let index = Math.floor(Math.random() * albums.length)%>
+            <% console.log(albums.length) %> 
+            <% console.log({index}) %> 
+            <img src='<%=albums[index].dataValues.pictureUrl%>'>
+        </div>
+    </div>
+<% } %>
 
-<br> <br>
+<br> 
+
+<% if (albums.length > 4) {  %>
+    <div class='carousel'>
+        <a class='carousel-item' href="#one!"><img src=<%=albums[0].dataValues.pictureUrl%>></a>
+        <a class='carousel-item' href="#two!"><img src=<%=albums[1].dataValues.pictureUrl%>></a>
+        <a class='carousel-item' href="#three!"><img src=<%=albums[2].dataValues.pictureUrl%>></a>
+        <a class='carousel-item' href="#four!"><img src=<%=albums[3].dataValues.pictureUrl%>></a>
+        <a class='carousel-item' href="#five!"><img src=<%=albums[4].dataValues.pictureUrl%>></a>
+    </div>
+<% } %>
 
 <div class="library">
     <% albums.forEach(album => { %>
@@ -31,6 +51,16 @@
     <% }) %> 
 </div>
 
+<%if(albums.length > 0) {%>
+    <div class='parallax-container'>
+        <div class='parallax'>
+            <% let index = Math.floor(Math.random() * albums.length)%>
+            <% console.log(albums.length) %> 
+            <% console.log({index}) %> 
+            <img src='<%=albums[index].dataValues.pictureUrl%>'>
+        </div>
+    </div>
+<% } %>
 
 
 

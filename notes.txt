@@ -11,6 +11,7 @@ weird bug where i can't delete a track? is it because of ridiculous, long, punct
 weird issue where if an artist does not have an image it will throw error
 
 EXTRA:
+for carousel, write code to convert integers into words
 put some sound in there using Tone.js
 try to incorporate both static and dynamic files
 eventually get all these hefty spotify functions exported elsewhere to clean up code
