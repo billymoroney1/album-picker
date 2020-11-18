@@ -13,13 +13,7 @@
 
 4. Setup Spotify API
 
-    - Create an account on the Spotify for Developers site, register your app, and replace the clientId and clientSeceret values in the index.js:
-
-        let spotifyApi = new SpotifyWebApi({
-            clientId: '0a36f996eac1468cb98f0f1e9746dcbe',
-            clientSecret: 'aa2291e2834447059749e58155c3242a',
-            redirectUri: 'http://localhost:8888/callback'
-    })
+    - Create an account on the Spotify for Developers site, and register your app. Create a .env file and add values for CLIENT_ID and CLIENT_SECRET.
 
 5. The app runs on port 8000 by default
 

@@ -19,8 +19,8 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const db = require('./models/index.js')
 
 let spotifyApi = new SpotifyWebApi({
-    clientId: '0a36f996eac1468cb98f0f1e9746dcbe',
-    clientSecret: 'aa2291e2834447059749e58155c3242a',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     redirectUri: 'http://localhost:8888/callback'
 })
 
@@ -339,6 +339,6 @@ app.post('/track', (req, res) => {
 })
 
 
-app.listen(8000, ()=>{
+app.listen(process.env.PORT || 8000, ()=>{
     console.log('you\'re listening to the sweet sounds of port 8000')
 })
